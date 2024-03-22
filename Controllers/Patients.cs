@@ -32,11 +32,19 @@ public class PatientController : ControllerBase
         }
     }
 
-    [HttpGet]
+
+    [HttpGet()]
     public IActionResult Get()
     {
         return Ok(_dbContext.Users.Where(u => u.Provider == false && u.Admin == false).ToList());
     }
+
+    [HttpGet("{id}")]
+    public IActionResult GetSingle(int id)
+    {
+        return Ok(_dbContext.Users.Where(u => u.Id == id));
+    }
+
 
     [HttpPut("get_single_patient")]
     public IActionResult GetSingle(PatientIdRequest patientIdRequest)
@@ -53,7 +61,7 @@ public class PatientController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPut]
+    [HttpPut("update_patient")]
     public IActionResult UpdatePatient(User user)
     {
         try
