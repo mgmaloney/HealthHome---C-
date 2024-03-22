@@ -6,6 +6,13 @@ namespace HealthHome
     public class HealthHomeDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Allergy> Allergies { get; set; }
+
+        public DbSet<Conversation> Conversations { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
+
+        public DbSet<PatientMed> PatientMeds { get; set; }
 
         public HealthHomeDbContext(DbContextOptions<HealthHomeDbContext> options) : base(options)
         {
