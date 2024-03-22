@@ -3,6 +3,7 @@ using System;
 using HealthHome;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthHome___C_.Migrations
 {
     [DbContext(typeof(HealthHomeDbContext))]
-    partial class HealthHomeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240321231455_MessagesCreateFour")]
+    partial class MessagesCreateFour
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,34 +91,7 @@ namespace HealthHome___C_.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConversationId");
-
                     b.ToTable("Messages");
-                });
-
-            modelBuilder.Entity("HealthHome.Models.PatientMed", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Dose")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Route")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PatientMeds");
                 });
 
             modelBuilder.Entity("HealthHome.Models.User", b =>
@@ -194,20 +170,6 @@ namespace HealthHome___C_.Migrations
                             LastName = "Bloom",
                             Provider = false
                         });
-                });
-
-            modelBuilder.Entity("HealthHome.Models.Message", b =>
-                {
-                    b.HasOne("HealthHome.Models.Conversation", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("ConversationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HealthHome.Models.Conversation", b =>
-                {
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

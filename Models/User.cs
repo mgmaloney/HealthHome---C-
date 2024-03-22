@@ -13,10 +13,11 @@ namespace HealthHome.Models
         public string? PhoneNumber { get; set; }
         public string? Birthdate { get; set; }
         public string? Ssn { get; set; }
-        public string? Gender {  get; set; }
+        public string? Gender { get; set; }
         public string? Sex { get; set; }
         public string? Credential { get; set; }
-        public bool Admin {  get; set; }
-        public bool Provider {  get; set; }
+        public bool Admin { get; set; }
+        public bool Provider { get; set; }
+
     }
 }

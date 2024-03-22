@@ -3,6 +3,7 @@ using System;
 using HealthHome;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthHome___C_.Migrations
 {
     [DbContext(typeof(HealthHomeDbContext))]
-    partial class HealthHomeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240322004200_PatientMeds")]
+    partial class PatientMeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,8 +90,6 @@ namespace HealthHome___C_.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ConversationId");
 
                     b.ToTable("Messages");
                 });
@@ -194,20 +195,6 @@ namespace HealthHome___C_.Migrations
                             LastName = "Bloom",
                             Provider = false
                         });
-                });
-
-            modelBuilder.Entity("HealthHome.Models.Message", b =>
-                {
-                    b.HasOne("HealthHome.Models.Conversation", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("ConversationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HealthHome.Models.Conversation", b =>
-                {
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }
